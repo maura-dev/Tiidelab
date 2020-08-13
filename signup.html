@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>TIIDELAB Signup Form</title>
+
+	<style type="text/css">
+		input{
+			width: 80%;
+			padding: 10px;
+			margin: 5px 20px;
+			border-radius: 10px;
+		}
+
+		.submit{
+			background-color: slateblue;
+			width: 85%;
+			color: snow;
+			font-size: 24px;
+		}
+
+		input:focus{
+			background-color: salmon;
+			color: seashell;
+			outline: none;
+		}
+
+		h3{
+			color: slateblue;
+			margin: 15px;
+			font-size: 32px;
+		}
+
+		.instruction, .form-container{
+			width: 50%; 
+			float: left
+		}
+
+		@media screen and (max-width: 800px){
+			.form-container, .instruction{
+				width: 100%;
+			}
+
+		}
+
+
+	</style>
+
+</head>
+
+<body style="background-color: mediumpurple;">
+
+	<div style="background-color: mistyrose;
+				border-radius: 10px;
+				 height: 60%; width: 70%;
+				 margin: 100px auto;">
+
+		<div class="instruction">
+
+			<img src="learning.png" alt="learning" srcset="" style="max-width: 100%">
+
+		</div>
+
+
+		<div class="form-container" style="background-color: aquamarine;">
+
+			<h3>Registeration Form</h3>
+
+			<form action="" name="Signupform" id="SignupForm" onsubmit="processForm()" >
+
+				<input type="text" name="fullName" id="fullName" placeholder="Enter Your Full Name" required>
+				<input type="email" name="email" id="email" placeholder="Enter Your Email Address" required>
+				<input type="text" name="username" id="userName" placeholder="Enter Your Username" required>
+				<input type="password" name="password" id="password" placeholder="Enter Your Password" required>
+				<input type="password" name="cpassword" id="confirmPassword" placeholder="Enter Your Password Again" required>
+				<input type="submit" class="submit" value="Signup" name="submit">
+				
+			</form>
+
+		</div>
+
+		<div style="clear: left;">
+			
+		</div>
+
+	</div>
+
+	<script type="text/javascript">
+
+		document.getElementById('SignupForm').addEventListener("submit",function(even){
+			event.preventDefault();
+		})
+
+		function processForm()
+		{
+			var fullName = document.getElementById('fullName').value
+				email= document.getElementById('email').value
+				username= document.getElementById('userName').value
+				password= document.getElementById('password').value
+				cpassword= document.getElementById('confirmPassword').value
+
+				if (password!=cpassword){
+					alert('Password mismatch')
+				}
+				else{
+					var data ={
+						"fullName":fullName,
+						"email":email,
+						"userName":username,
+						"newpassword":password,
+						"isEnabled":true,
+						"roles":["user"] 
+					}
+
+						fetch('https://api.openclass.ng/Register',{
+						method:'POST',
+						body:JSON.stringify(data),
+						headers:{
+							'Content-Type':'application/json'
+						}
+
+					}).then(function(data){
+						alert('Congrats')
+					})
+				}
+		}
+	
+	</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
