@@ -68,7 +68,7 @@
 
 			<h3>Registeration Form</h3>
 
-			<form action="" name="Signupform" id="SignupForm" onsubmit="processForm()" >
+			<form action="" method="POST" data-netlify="true" name="Signupform" id="SignupForm" onsubmit="processForm()" >
 
 				<input type="text" name="fullName" id="fullName" placeholder="Enter Your Full Name" required>
 				<input type="email" name="email" id="email" placeholder="Enter Your Email Address" required>
@@ -87,48 +87,7 @@
 
 	</div>
 
-	<script type="text/javascript">
-
-		document.getElementById('SignupForm').addEventListener("submit",function(even){
-			event.preventDefault();
-		})
-
-		function processForm()
-		{
-			var fullName = document.getElementById('fullName').value
-				email= document.getElementById('email').value
-				username= document.getElementById('userName').value
-				password= document.getElementById('password').value
-				cpassword= document.getElementById('confirmPassword').value
-
-				if (password!=cpassword){
-					alert('Password mismatch')
-				}
-				else{
-					var data ={
-						"fullName":fullName,
-						"email":email,
-						"userName":username,
-						"newpassword":password,
-						"isEnabled":true,
-						"roles":["user"] 
-					}
-
-						fetch('https://api.openclass.ng/Register',{
-						method:'POST',
-						body:JSON.stringify(data),
-						headers:{
-							'Content-Type':'application/json'
-						}
-
-					}).then(function(data){
-						alert('Congrats')
-					})
-				}
-		}
 	
-	</script>
-
 </body>
 </html>
 
